@@ -5,7 +5,7 @@ import android.app.Activity;
 /**
  * Created by ankur on 2015-11-12.
  */
-public class Calculations extends Activity{
+public class Calculations extends Activity {
 
 
     private double inputtedNumber; //private double mOperand;
@@ -29,29 +29,28 @@ public class Calculations extends Activity{
         inputtedNumber = 0;
         waitingOperator = "";
         mWaitingInputtedNumber = 0;
-        mCalculatorMemory= 0;
+        mCalculatorMemory = 0;
 
     }
 
 
-    public void setInputtedNumber(double inputNumber){
+    public void setInputtedNumber(double inputNumber) {
 
         inputtedNumber = inputNumber;
     }
 
-    public double getResult(){
+    public double getResult() {
         return inputtedNumber;
 
     }
+
     // used on screen orientation change
-    public void setMemory(double calculatorMemory)
-    {
+    public void setMemory(double calculatorMemory) {
         mCalculatorMemory = calculatorMemory;
     }
 
     // used on screen orientation change
-    public double getMemory()
-    {
+    public double getMemory() {
         return mCalculatorMemory;
     }
 
@@ -59,29 +58,26 @@ public class Calculations extends Activity{
         return Double.toString(inputtedNumber);
     }
 
-    protected double performCalculation(String operator){
+    protected double performCalculation(String operator) {
 
-        if(operator.equals(CLEAR)){
+        if (operator.equals(CLEAR)) {
             inputtedNumber = 0;
             waitingOperator = "";
             mWaitingInputtedNumber = 0
-            ;mCalculatorMemory = 0;
+            ;
+            mCalculatorMemory = 0;
         }
         if (waitingOperator.equals(ADDITION)) {
 
             inputtedNumber = mWaitingInputtedNumber + inputtedNumber;
 
-        }
-        else if(waitingOperator.equals(SUBTRACTION)){
+        } else if (waitingOperator.equals(SUBTRACTION)) {
             inputtedNumber = mWaitingInputtedNumber - inputtedNumber;
 
-        }
-        else if(waitingOperator.equals(DIVIDE)){
-            inputtedNumber = mWaitingInputtedNumber / inputtedNumber ;
+        } else if (waitingOperator.equals(DIVIDE)) {
+            inputtedNumber = mWaitingInputtedNumber / inputtedNumber;
 
-        }
-
-        else if(waitingOperator.equals(MULTIPLICATION)){
+        } else if (waitingOperator.equals(MULTIPLICATION)) {
             inputtedNumber = mWaitingInputtedNumber * inputtedNumber;
 
         }

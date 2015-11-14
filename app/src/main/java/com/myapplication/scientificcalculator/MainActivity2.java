@@ -10,7 +10,7 @@ import android.widget.Toast;
 /**
  * Created by ankur on 2015-11-08.
  */
-public class MainActivity2 extends Activity  {
+public class MainActivity2 extends Activity {
 
 
     @Override

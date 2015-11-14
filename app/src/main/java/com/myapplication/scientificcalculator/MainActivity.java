@@ -14,12 +14,11 @@ import java.text.DecimalFormat;
 public class MainActivity extends Activity implements View.OnClickListener {
 
 
-
     private TextView inputDisplay;
     private boolean isInProcess = false;
     /*private CalculatorBrain mCalculatorBrain;*/
     private static final String NUMBERS = ".0123456789";
-    private Calculations mCalculations ;
+    private Calculations mCalculations;
 
     DecimalFormat df = new DecimalFormat("@##########");
 
@@ -27,10 +26,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-                requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         mCalculations = new Calculations();
         inputDisplay = (TextView) findViewById(R.id.textView1);
@@ -68,11 +67,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
 
-        String buttonPress = ((Button)v).getText().toString();
+        String buttonPress = ((Button) v).getText().toString();
 
         //if button pressed is change
         //calculator changes to scientific calculator
-        if(buttonPress.equalsIgnoreCase("change")){
+        if (buttonPress.equalsIgnoreCase("change")) {
             Intent intent = new Intent(MainActivity.this, MainActivity2.class);
             startActivity(intent);
         }
@@ -82,46 +81,47 @@ public class MainActivity extends Activity implements View.OnClickListener {
             // number was pressed
             if (isInProcess) {
 
-                if (buttonPress.equals(".")){
-                    if(inputDisplay.getText().toString().contains(".")){
-                    }} else {
-                    inputDisplay.append(buttonPress);
+                if (buttonPress.equals(".")) {
+                    if (inputDisplay.getText().toString().contains(".")) {
                     }
-               } else {
-               if (buttonPress.equals(".")) {
-                    inputDisplay.setText(0 + buttonPress);
-                    } else {
-                   inputDisplay.setText(buttonPress);
+                } else {
+                    inputDisplay.append(buttonPress);
                 }
-               isInProcess = true;
-            }
             } else {
+                if (buttonPress.equals(".")) {
+                    inputDisplay.setText(0 + buttonPress);
+                } else {
+                    inputDisplay.setText(buttonPress);
+                }
+                isInProcess = true;
+            }
+        } else {
             // operation was pressed
             if (isInProcess) {
                 mCalculations.setInputtedNumber(Double.parseDouble(inputDisplay.getText().toString()));
                 isInProcess = false;
-                }
+            }
             mCalculations.performCalculation(buttonPress);
-           inputDisplay.setText(df.format(mCalculations.getResult()));
-           }
+            inputDisplay.setText(df.format(mCalculations.getResult()));
         }
+    }
 
     @Override
-   protected void onSaveInstanceState(Bundle outState) {
-       super.onSaveInstanceState(outState);
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         // Save variables on screen orientation change
-       outState.putDouble("OPERAND", mCalculations.getResult());
+        outState.putDouble("OPERAND", mCalculations.getResult());
         outState.putDouble("MEMORY", mCalculations.getMemory());
-       }
+    }
 
     @Override
-   protected void onRestoreInstanceState(Bundle savedInstanceState) {
-       super.onRestoreInstanceState(savedInstanceState);
-       // Restore variables on screen orientation change
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore variables on screen orientation change
         mCalculations.setInputtedNumber(savedInstanceState.getDouble("OPERAND"));
         mCalculations.setMemory(savedInstanceState.getDouble("MEMORY"));
         inputDisplay.setText(df.format(mCalculations.getResult()));
-        }
+    }
 
 }
 
