@@ -104,11 +104,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             inputDisplay.setText(df.format(mCalculations.getResult()));
         }
 
-        if (buttonPress.equals("=")) {
-            inputDisplay.setText(df.format(mCalculations.getResult()));
-
-        }
-
     }
 
     @Override
