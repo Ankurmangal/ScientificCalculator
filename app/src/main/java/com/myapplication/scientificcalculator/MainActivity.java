@@ -16,7 +16,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private TextView inputDisplay;
     private boolean isInProcess = false;
-    /*private CalculatorBrain mCalculatorBrain;*/
     private static final String NUMBERS = ".0123456789";
     private Calculations mCalculations;
 
@@ -104,6 +103,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mCalculations.performCalculation(buttonPress);
             inputDisplay.setText(df.format(mCalculations.getResult()));
         }
+
+        if (buttonPress.equals("=")) {
+            inputDisplay.setText(df.format(mCalculations.getResult()));
+
+        }
+
     }
 
     @Override

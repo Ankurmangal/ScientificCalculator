@@ -34,22 +34,20 @@ public class Calculations extends Activity {
     }
 
 
-    public void setInputtedNumber(double inputNumber) {
-
-        inputtedNumber = inputNumber;
+    public void setInputtedNumber(double input) {
+        inputtedNumber = input;
     }
 
     public double getResult() {
         return inputtedNumber;
-
     }
 
-    // used on screen orientation change
+
     public void setMemory(double calculatorMemory) {
         mCalculatorMemory = calculatorMemory;
     }
 
-    // used on screen orientation change
+
     public double getMemory() {
         return mCalculatorMemory;
     }
@@ -58,31 +56,34 @@ public class Calculations extends Activity {
         return Double.toString(inputtedNumber);
     }
 
+
     protected double performCalculation(String operator) {
+
 
         if (operator.equals(CLEAR)) {
             inputtedNumber = 0;
             waitingOperator = "";
-            mWaitingInputtedNumber = 0
-            ;
-            mCalculatorMemory = 0;
-        }
-        if (waitingOperator.equals(ADDITION)) {
-
-            inputtedNumber = mWaitingInputtedNumber + inputtedNumber;
-
-        } else if (waitingOperator.equals(SUBTRACTION)) {
-            inputtedNumber = mWaitingInputtedNumber - inputtedNumber;
-
-        } else if (waitingOperator.equals(DIVIDE)) {
-            inputtedNumber = mWaitingInputtedNumber / inputtedNumber;
-
-        } else if (waitingOperator.equals(MULTIPLICATION)) {
-            inputtedNumber = mWaitingInputtedNumber * inputtedNumber;
-
+            mWaitingInputtedNumber = 0;
+            // mCalculatorMemory = 0;
+        } else {
+            if (waitingOperator.equals(ADDITION)) {
+                inputtedNumber = mWaitingInputtedNumber + inputtedNumber;
+            } else if (waitingOperator.equals(SUBTRACTION)) {
+                inputtedNumber = mWaitingInputtedNumber - inputtedNumber;
+            } else if (waitingOperator.equals(MULTIPLICATION)) {
+                inputtedNumber = mWaitingInputtedNumber * inputtedNumber;
+            } else if (waitingOperator.equals(DIVIDE)) {
+                if (inputtedNumber != 0) {
+                    inputtedNumber = mWaitingInputtedNumber / inputtedNumber;
+                }
+            }
+            waitingOperator = operator;
+            mWaitingInputtedNumber = inputtedNumber;
         }
 
         return inputtedNumber;
     }
-
 }
+
+
+
