@@ -4,12 +4,15 @@ import java.text.DecimalFormat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity2 extends Activity implements OnClickListener {
 
@@ -26,6 +29,8 @@ public class MainActivity2 extends Activity implements OnClickListener {
     public static final String SINE = "sin";
     public static final String COSINE = "cos";
     public static final String TANGENT = "tan";
+
+    int clickCount = 0;
 
     private Boolean isInProcess = false;
 
@@ -102,6 +107,24 @@ public class MainActivity2 extends Activity implements OnClickListener {
     @Override
 
     public void onClick(View v) {
+
+
+        clickCount++;
+
+        if (clickCount == 1){
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity2.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("For a good experience use scientific calculator horizontally");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            alertDialog.show();
+
+        }
 
         String buttonPress = ((Button) v).getText().toString();
 
