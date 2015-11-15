@@ -23,6 +23,7 @@ public class Calculations extends Activity {
     public static final String CHANGE = "CHANGE";
 
 
+
     //constructor
     public Calculations() {
         // initialize variables upon start
@@ -66,6 +67,9 @@ public class Calculations extends Activity {
             mWaitingInputtedNumber = 0;
             // mCalculatorMemory = 0;
         } else {
+            if(operator.equals(PLUSMINUS)){
+                inputtedNumber = -inputtedNumber;
+            }
             if (waitingOperator.equals(ADDITION)) {
                 inputtedNumber = mWaitingInputtedNumber + inputtedNumber;
             } else if (waitingOperator.equals(SUBTRACTION)) {
@@ -76,6 +80,7 @@ public class Calculations extends Activity {
                 if (inputtedNumber != 0) {
                     inputtedNumber = mWaitingInputtedNumber / inputtedNumber;
                 }
+
             }
             waitingOperator = operator;
             mWaitingInputtedNumber = inputtedNumber;
